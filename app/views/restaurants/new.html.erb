@@ -1,0 +1,32 @@
+<h1>Ajouter un restaurant</h1>
+
+<%= simple_form_for @restaurant do |f| %>
+  <%= f.error_notification %>
+
+  <div>
+    <%= f.input :name, label: "Nom du restaurant" %>
+  </div>
+
+  <div>
+    <%= f.input :address, label: "Adresse" %>
+  </div>
+
+  <div>
+    <%= f.input :phone_number, label: "Téléphone" %>
+  </div>
+
+  <div>
+    <%= f.input :category,
+                collection: Restaurant::CATEGORIES,
+                prompt: "Choisis une catégorie",
+                label: "Catégorie" %>
+  </div>
+
+  <div>
+    <%= f.button :submit, "Créer le restaurant" %>
+  </div>
+<% end %>
+
+<br>
+
+<%= link_to "Retour à la liste", restaurants_path %>

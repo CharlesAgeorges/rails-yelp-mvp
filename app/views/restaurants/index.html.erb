@@ -1,0 +1,19 @@
+<h1>Restaurants</h1>
+
+<ul>
+  <% @restaurants.each do |restaurant| %>
+    <li>
+      <%= link_to restaurant.name, restaurant_path(restaurant) %><br>
+      <%= restaurant.category.capitalize %> – <%= restaurant.address %><br>
+
+      <% if restaurant.reviews.any? %>
+        ⭐ <strong><%= restaurant.reviews.average(:rating).to_f.round(1) %> / 5</strong>
+      <% else %>
+        Pas encore de note
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+
+<%= link_to "Ajouter un restaurant", new_restaurant_path, class: "btn btn-primary" %>

@@ -1,0 +1,38 @@
+<h1><%= @restaurant.name %></h1>
+<p><%= @restaurant.address %></p>
+<p><%= @restaurant.category %></p>
+
+<hr>
+
+<h2>Avis</h2>
+
+<% @restaurant.reviews.each do |review| %>
+  <div>
+    <p>
+      <strong>Note :</strong> <%= review.rating %> / 5<br>
+      <%= review.content %>
+    </p>
+  </div>
+<% end %>
+
+<hr>
+
+<h2>Ajouter un avis</h2>
+
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.error_notification %>
+
+  <div>
+    <%= f.input :rating, as: :integer, label: "Note (0 à 5)", input_html: { min: 0, max: 5 } %>
+  </div>
+
+  <div>
+    <%= f.input :content, as: :text, label: "Commentaire" %>
+  </div>
+
+  <div>
+    <%= f.button :submit, "Envoyer mon avis" %>
+  </div>
+<% end %>
+
+<%= link_to "les restos", restaurants_path%>
